@@ -2,7 +2,7 @@ package com.example.SpringBootPractice;
 
 import com.example.SpringBootPractice.controller.UserController;
 import com.example.SpringBootPractice.dto.UserDto;
-import com.example.SpringBootPractice.service.UserService;
+import com.example.SpringBootPractice.service.DefaultUserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +33,7 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private UserService userService;
+    private DefaultUserService userService;
 
     @InjectMocks
     private UserController userController;
