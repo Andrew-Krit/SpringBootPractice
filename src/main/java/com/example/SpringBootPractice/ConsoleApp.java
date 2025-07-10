@@ -1,9 +1,10 @@
 package com.example.SpringBootPractice;
 
-import com.example.SpringBootPractice.dto.UserDto;
-import com.example.SpringBootPractice.service.UserService;
+import com.example.SpringBootPractice.userService.DefaultUserService;
+import com.example.SpringBootPractice.userService.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -11,8 +12,9 @@ import java.util.Scanner;
 
 @Component
 @RequiredArgsConstructor
+@Profile("!test")
 public class ConsoleApp {
-    private final UserService userService;
+    private final DefaultUserService userService;
     private final Scanner scanner = new Scanner(System.in);
 
     @EventListener(ApplicationReadyEvent.class)

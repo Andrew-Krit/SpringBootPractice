@@ -1,6 +1,6 @@
-package com.example.SpringBootPractice.service;
+package com.example.SpringBootPractice.userService;
 
-import com.example.SpringBootPractice.dto.UserDto;
+import com.example.SpringBootPractice.userService.dto.UserDto;
 import java.util.List;
 
 /**

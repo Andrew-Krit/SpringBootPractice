@@ -1,4 +1,4 @@
-package com.example.SpringBootPractice.entity;
+package com.example.SpringBootPractice.userService.entity;
 
 import java.time.LocalDateTime;
 import jakarta.persistence.Id;
@@ -7,15 +7,17 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Сущность пользователя.
  */
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User {
     @Id
@@ -41,7 +43,6 @@ public class User {
         this.age = age;
     }
 
-    @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
