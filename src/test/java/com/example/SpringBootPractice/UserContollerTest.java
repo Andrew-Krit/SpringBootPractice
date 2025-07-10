@@ -1,8 +1,8 @@
 package com.example.SpringBootPractice;
 
-import com.example.SpringBootPractice.controller.UserController;
-import com.example.SpringBootPractice.dto.UserDto;
-import com.example.SpringBootPractice.service.DefaultUserService;
+import com.example.SpringBootPractice.userService.controller.UserController;
+import com.example.SpringBootPractice.userService.dto.UserDto;
+import com.example.SpringBootPractice.userService.DefaultUserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
