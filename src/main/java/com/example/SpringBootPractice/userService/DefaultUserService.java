@@ -1,9 +1,11 @@
-package com.example.SpringBootPractice.service;
+package com.example.SpringBootPractice.userService;
 
-import com.example.SpringBootPractice.entity.User;
-import com.example.SpringBootPractice.dto.UserDto;
-import com.example.SpringBootPractice.mapper.UserMapper;
-import com.example.SpringBootPractice.repository.UserRepository;
+import com.example.SpringBootPractice.userService.dto.UserEventDto;
+import com.example.SpringBootPractice.userService.entity.User;
+import com.example.SpringBootPractice.userService.dto.UserDto;
+import com.example.SpringBootPractice.userService.kafka.produce.UserProducer;
+import com.example.SpringBootPractice.userService.mapper.UserMapper;
+import com.example.SpringBootPractice.userService.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class DefaultUserService implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final UserProducer userProducer;
 
     public List<UserDto> getAllUsers() {
         return userRepository.findAll().stream()
@@ -32,6 +35,9 @@ public class DefaultUserService implements UserService {
 
     public UserDto createUser(UserDto dto) {
         User saved = userRepository.save(userMapper.toEntity(dto));
+        UserEventDto userProducerData = new UserEventDto(dto.getEmail(), "CREATED");
+        userProducer.send("user-events", userProducerData);
+
         return userMapper.toDto(saved);
     }
 
@@ -46,6 +52,10 @@ public class DefaultUserService implements UserService {
     }
 
     public void deleteUser(Integer id) {
+        User dto = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
         userRepository.deleteById(id);
+        UserEventDto userProducerData = new UserEventDto(dto.getEmail(), "DELETED");
+        userProducer.send("user-events", userProducerData);
     }
 }

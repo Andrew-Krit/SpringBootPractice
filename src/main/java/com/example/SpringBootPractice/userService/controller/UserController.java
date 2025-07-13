@@ -1,7 +1,7 @@
-package com.example.SpringBootPractice.controller;
+package com.example.SpringBootPractice.userService.controller;
 
-import com.example.SpringBootPractice.dto.UserDto;
-import com.example.SpringBootPractice.service.DefaultUserService;
+import com.example.SpringBootPractice.userService.dto.UserDto;
+import com.example.SpringBootPractice.userService.DefaultUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
