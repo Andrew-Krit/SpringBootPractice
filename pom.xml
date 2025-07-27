@@ -19,7 +19,7 @@
 		<module>Notification-service</module>
 		<module>Discovery-service</module>
 		<module>Gateway-service</module>
-		<module>ConfigServer</module>
+		<module>Config-server</module>
 	</modules>
 	<properties>
 		<java.version>21</java.version>
